@@ -1,4 +1,4 @@
-package server
+package framework
 
 import (
 	"fmt"
@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"time"
 
-	"gitlab.infra.online.net/paas/serverless-offline/go/offline/function"
+	"github.com/scaleway/serverless-functions-go/framework/function"
 )
 
 var (

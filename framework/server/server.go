@@ -13,8 +13,8 @@ import (
 	"time"
 
 	"github.com/rs/zerolog/log"
-	"gitlab.infra.online.net/paas/faas-runtimes/core/events"
-	"gitlab.infra.online.net/paas/faas-runtimes/core/handler"
+	"github.com/scaleway/serverless-functions-go/framework/events"
+	"github.com/scaleway/serverless-functions-go/framework/handler"
 )
 
 const (

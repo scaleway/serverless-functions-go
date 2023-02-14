@@ -11,8 +11,8 @@ import (
 	"strings"
 
 	"github.com/google/uuid"
-	"gitlab.infra.online.net/paas/serverless-offline/go/offline/core"
-	"gitlab.infra.online.net/paas/serverless-offline/go/offline/function"
+	"github.com/scaleway/serverless-functions-go/framework/core"
+	"github.com/scaleway/serverless-functions-go/framework/function"
 )
 
 const (
