@@ -1,4 +1,4 @@
-# Serverless Functions Go
+# Serverless Functions Go 💜
 
 Scaleway Serverless Functions is a framework to provide a good developer experience to write Serverless Functions.
 
@@ -21,7 +21,8 @@ If you are looking for framework about other runtimes refer to the links below :
 ## 🚀 Features
 
 This repository aims to provide the best experience : **local testing, utils, documentations etc...**
-additionnaly we love to share things with community and we want to expose receipts to public.
+additionnaly we love to share things with community and we want to expose receipts to public. That's why
+we make our framework publicly available to help the community !
 
 ## 🏡 Local testing
 
@@ -40,7 +41,7 @@ What this packages does not :
   to monitor your application.
 - **Build functions**: When your function is uploaded we build it in an environment that can be different than yours. Our build pipelines supports
   tons of different packages but sometimes it requires specific setup, as example if your function requires specific 3D system
-  libraries from your GPU card provider. In case of deployment error please check help section
+  libraries from your GPU card provider. In case of deployment error please check help section.
 
 ## 🛟 Help & support
 
