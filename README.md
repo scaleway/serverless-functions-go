@@ -79,14 +79,19 @@ func main() {
 
 This file will expose your handler on a local web-server allowing you to test your function.
 
+Some informations will be added into requests for example specific headers. For local development additional header values are hardcoded
+to make it easy to differenciate them. In production you will be able to observe headers with exploitable data.
+
+Local testing part of this framework does not aim to simulate 100% production but it aims to makes it easier to work with functions locally.
+
 ### Cli
 
-To run the server locally, run `go run cmd/main.go`
+To run the server locally : `go run cmd/main.go`
 
 ### VS Code
 
-Open `cmd/main.go` and open the "Run and Debug" pannel to execute or debug your function, there is no special
-configuration to add
+Open `cmd/main.go` and open the "Run and Debug" pannel to execute or debug your function there is no special
+configuration to add to VSCode.
 
 ### Goland
 
@@ -101,11 +106,17 @@ and this package aims to simulate everything your request will go through.
 
 **How my function will be deployed**
 
-Your function will be deployed in an environment that allows your function to easily Scale
+Your function will be deployed in an environment that allows your function to easily Scale up and down and it's wrapped into
+different pieces of software with different roles. This stack also changes headers, input and output of your function, that's why
+this tool has been developed to simulate this parts.
 
-## Architecture
+**Do I need to deploy my fonction differently ?**
+
+No. This framework does not affect deployment nor performance.
+
+## 🏛️ Architecture
 
 In order to make development and understanding of this repository we tried to keep the path of the request natural.
 
-* [framework](./framework/) folder is used to store all the code and folder that you can import in your project
-* - [framework/core](./framework/core) is used to store core features of the Scaleway Serverless processing
+- [framework](./framework/) folder is used to store all the code and folder that you can import in your project
+- [testing](./testing) contains all the cool tools to work locally with your function 😎

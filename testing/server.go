@@ -4,17 +4,15 @@ import (
 	"fmt"
 	"net"
 	"net/http"
-	"time"
 
 	"github.com/scaleway/serverless-functions-go/framework/function"
 )
 
-var (
-	localHandler function.ScwFuncV1
-	latency      time.Duration
-)
+// Keep the handler to the function .
+var localHandler function.ScwFuncV1
 
-// ScalewayRouter is the entry point for offline testing. It will serve
+// ScalewayRouter is the entry point for offline testing. It will serve the handler to a local webserver.
+// Read options.go to check advanced paramenter and documentation
 func ScalewayRouter(handler function.ScwFuncV1, options ...Option) {
 	localHandler = handler
 
@@ -38,12 +36,9 @@ func ScalewayRouter(handler function.ScwFuncV1, options ...Option) {
 	}
 }
 
+// mainHandlerFnc is the function served by the local server, it will call the localHandler function.
 func mainHandlerFnc(httpResp http.ResponseWriter, httpReq *http.Request) {
 	defer httpReq.Body.Close()
 
 	CoreProcessing(httpResp, httpReq, localHandler)
-
-	httpResp.Header().Add("x-envoy-upstream-service-time", latency.String())
-
-	time.Sleep(latency)
 }

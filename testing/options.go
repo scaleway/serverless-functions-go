@@ -4,8 +4,10 @@ import (
 	"fmt"
 )
 
+// Option type used for option pattern to add parameters to local server.
 type Option func(*Server)
 
+// Server represent the local server with it's parameters
 type Server struct {
 	port string
 }

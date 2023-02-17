@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-type coreRuntimeRequest struct {
+type subRuntimeRequest struct {
 	Event struct {
 		HTTPMethod            string            `json:"httpMethod"`
 		Headers               map[string]string `json:"headers"`
@@ -16,6 +16,8 @@ type coreRuntimeRequest struct {
 	} `json:"event"`
 }
 
+// SubProcessing simulates speicifc go workflow that can happens in the FaaS environment.
+// The request of the body must complies with subRuntimeRequest type to be processed.
 func SubProcessing(httpResp http.ResponseWriter, httpReq *http.Request) {
 	bodyBytes, err := io.ReadAll(httpReq.Body)
 	if err != nil {
@@ -25,7 +27,7 @@ func SubProcessing(httpResp http.ResponseWriter, httpReq *http.Request) {
 		return
 	}
 
-	var req coreRuntimeRequest
+	var req subRuntimeRequest
 	if err := json.Unmarshal(bodyBytes, &req); err != nil {
 		httpResp.WriteHeader(http.StatusInternalServerError)
 		_, _ = httpResp.Write([]byte("Cannot unmarshal event from core runtime"))
