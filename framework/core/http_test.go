@@ -14,10 +14,10 @@ func TestFormatEventHttp(t *testing.T) {
 	t.Parallel()
 
 	testHeaders := http.Header{
-		"array":  {"val1", "val2"},
-		"comma":  {"val1,val2"},
-		"single": {"val1"},
-		"empty":  {},
+		"array":  []string{"val1", "val2"},
+		"comma":  []string{"val1,val2"},
+		"single": []string{"val1"},
+		"empty":  []string{},
 	}
 
 	req := http.Request{
