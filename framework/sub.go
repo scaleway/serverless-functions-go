@@ -20,7 +20,7 @@ func SubProcessing(httpResp http.ResponseWriter, httpReq *http.Request) {
 	bodyBytes, err := io.ReadAll(httpReq.Body)
 	if err != nil {
 		httpResp.WriteHeader(http.StatusInternalServerError)
-		httpResp.Write([]byte(err.Error()))
+		_, _ = httpResp.Write([]byte(err.Error()))
 
 		return
 	}
@@ -28,7 +28,7 @@ func SubProcessing(httpResp http.ResponseWriter, httpReq *http.Request) {
 	var req coreRuntimeRequest
 	if err := json.Unmarshal(bodyBytes, &req); err != nil {
 		httpResp.WriteHeader(http.StatusInternalServerError)
-		httpResp.Write([]byte("Cannot unmarshal event from core runtime"))
+		_, _ = httpResp.Write([]byte("Cannot unmarshal event from core runtime"))
 
 		return
 	}

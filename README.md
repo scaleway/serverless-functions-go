@@ -75,7 +75,6 @@ func main() {
 	// Replace "Handle" with your function handler name if necessary
 	server.ScalewayRouter(Handle, server.WithPort(8080))
 }
-
 ```
 
 This file will expose your handler on a local web-server allowing you to test your function.
@@ -92,3 +91,21 @@ configuration to add
 ### Goland
 
 The IDE will generate a run configuration for you, open `cmd/main.go` and run the main.
+
+## ❓ FAQ
+
+**Why do I need addtional package to call my function ?**
+
+Your Function Handler can be served by a simple HTTP server but Serverless Ecosystem involves a lot of different layers
+and this package aims to simulate everything your request will go through.
+
+**How my function will be deployed**
+
+Your function will be deployed in an environment that allows your function to easily Scale
+
+## Architecture
+
+In order to make development and understanding of this repository we tried to keep the path of the request natural.
+
+* [framework](./framework/) folder is used to store all the code and folder that you can import in your project
+* - [framework/core](./framework/core) is used to store core features of the Scaleway Serverless processing

@@ -14,6 +14,7 @@ var (
 	latency      time.Duration
 )
 
+// ScalewayRouter is the entry point for offline testing. It will serve
 func ScalewayRouter(handler function.ScwFuncV1, options ...Option) {
 	localHandler = handler
 
