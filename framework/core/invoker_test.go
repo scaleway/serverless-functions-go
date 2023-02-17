@@ -11,141 +11,6 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-// func TestFunctionInvoker_streamRequest_userAgent(t *testing.T) {
-// 	t.Parallel()
-
-// 	// write User-Agent to body to compare more easily
-// 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-// 		fmt.Fprint(w, r.Header.Get(userAgentHeaderKey))
-// 	}))
-// 	defer server.Close()
-
-// 	fn := FunctionInvoker{
-// 		client:   http.DefaultClient,
-// 	}
-
-// 	type args struct {
-// 		reqBody CoreRuntimeRequest
-// 	}
-
-// 	tests := []struct {
-// 		name     string
-// 		args     args
-// 		wantBody string
-// 	}{
-// 		{
-// 			name: "user agent is set and forwarded",
-// 			args: args{
-// 				reqBody: CoreRuntimeRequest{
-// 					Event: events.APIGatewayProxyRequest{
-// 						Headers: map[string]string{
-// 							"User-Agent": "my user agent",
-// 						},
-// 						MultiValueHeaders: map[string][]string{
-// 							"multi-header": {"h1", "h2"},
-// 						},
-// 					},
-// 					TriggerType: events.TriggerTypeHTTP,
-// 				},
-// 			},
-// 			wantBody: "my user agent",
-// 		},
-// 		{
-// 			name: "user agent is not set, defaulting to http package user agent",
-// 			args: args{
-// 				reqBody: CoreRuntimeRequest{
-// 					Event: events.APIGatewayProxyRequest{
-// 						Headers: map[string]string{},
-// 					},
-// 					TriggerType: events.TriggerTypeHTTP,
-// 				},
-// 			},
-// 			// default user agent when calling from a Go program
-// 			// https://cs.opensource.google/go/go/+/refs/tags/go1.18.3:src/net/http/request.go;l=512
-// 			wantBody: "Go-http-client/1.1",
-// 		},
-// 	}
-// 	for _, tt := range tests {
-// 		t.Run(tt.name, func(t *testing.T) {
-// 			gotRes, err := fn.streamRequest(tt.args.reqBody)
-// 			require.NoError(t, err)
-
-// 			body, err := io.ReadAll(gotRes.Body)
-// 			require.NoError(t, err)
-
-// 			bodyString := string(body)
-// 			assert.Equal(t, tt.wantBody, bodyString)
-// 		})
-// 	}
-// }
-
-// func TestFunctionInvoker_streamRequest_contentType(t *testing.T) {
-// 	t.Parallel()
-
-// 	// write Content-Type to body to compare more easily
-// 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-// 		fmt.Fprint(w, r.Header.Get(contentTypeHeaderKey))
-// 	}))
-// 	defer server.Close()
-
-// 	fn := FunctionInvoker{
-// 		client:   http.DefaultClient,
-// 		subrtURL: server.URL,
-// 	}
-
-// 	type args struct {
-// 		reqBody CoreRuntimeRequest
-// 	}
-
-// 	tests := []struct {
-// 		name     string
-// 		args     args
-// 		wantBody string
-// 	}{
-// 		{
-// 			name: "content type is set and forwarded",
-// 			args: args{
-// 				reqBody: CoreRuntimeRequest{
-// 					Event: events.APIGatewayProxyRequest{
-// 						Headers: map[string]string{
-// 							"Content-Type": "text/plain",
-// 						},
-// 						MultiValueHeaders: map[string][]string{
-// 							"multi-header": {"h1", "h2"},
-// 						},
-// 					},
-// 					TriggerType: events.TriggerTypeHTTP,
-// 				},
-// 			},
-// 			wantBody: "text/plain",
-// 		},
-// 		{
-// 			name: "content type is not set, defaulting to application/json",
-// 			args: args{
-// 				reqBody: CoreRuntimeRequest{
-// 					Event: events.APIGatewayProxyRequest{
-// 						Headers: map[string]string{},
-// 					},
-// 					TriggerType: events.TriggerTypeHTTP,
-// 				},
-// 			},
-// 			wantBody: "application/json",
-// 		},
-// 	}
-// 	for _, tt := range tests {
-// 		t.Run(tt.name, func(t *testing.T) {
-// 			gotRes, err := fn.streamRequest(tt.args.reqBody)
-// 			require.NoError(t, err)
-
-// 			body, err := io.ReadAll(gotRes.Body)
-// 			require.NoError(t, err)
-
-// 			bodyString := string(body)
-// 			assert.Equal(t, tt.wantBody, bodyString)
-// 		})
-// 	}
-// }
-
 func TestStreamRequestBadInput(t *testing.T) {
 	t.Parallel()
 
@@ -181,23 +46,6 @@ func TestStreamRequestUserAgent(t *testing.T) {
 	invoker, err := NewInvoker("", "", "", "", server.URL, false)
 	require.NoError(t, err)
 	assert.NotNil(t, invoker)
-
-	// rtReq := CoreRuntimeRequest{
-	// 	TriggerType: TriggerTypeHTTP,
-	// }
-
-	// httpRep, err := invoker.streamRequest(rtReq)
-	// require.NoError(t, err)
-	// assert.NotNil(t, httpRep)
-	// assert.Equal(t, http.StatusOK, httpRep.StatusCode)
-
-	// defer httpRep.Body.Close()
-
-	// body, err := io.ReadAll(httpRep.Body)
-	// require.NoError(t, err)
-	// assert.Equal(t, returnString, string(body))
-	// assert.Contains(t, httpRep.Header.Values(headerTestKey), headerTestVal)
-	// assert.Contains(t, httpRep.Header.Values(headerTestKey), headerTestVal2)
 }
 
 func TestStreamExecute(t *testing.T) {
@@ -236,11 +84,4 @@ func TestStreamExecute(t *testing.T) {
 	resp, err := invoker.Execute(event, GetExecutionContext(), TriggerTypeHTTP)
 	require.NoError(t, err)
 	assert.NotNil(t, resp)
-	// assert.Equal(t, http.StatusNotFound, resp.StatusCode)
-
-	// defer resp.Body.Close()
-	// bodyBytes, err := io.ReadAll(resp.Body)
-	// require.NoError(t, err)
-	// assert.Equal(t, []byte(returnString), bodyBytes)
-	// assert.Equal(t, strconv.Itoa(len(returnString)), resp.Header.Get("Content-Length"))
 }

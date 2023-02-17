@@ -9,14 +9,14 @@ import (
 )
 
 var (
-	// ErrInvalidHTTPResponseFormat - Error type for mal-formatted responses from user's handlers.
-	ErrInvalidHTTPResponseFormat = errors.New("handler's results for HTTP response is mal-formatted")
+	// ErrInvalidHTTPResponseFormat Error type for mal-formatted responses from handler.
+	ErrInvalidHTTPResponseFormat = errors.New("handler result for HTTP response is mal-formatted")
 
 	// ErrRespEmpty is returned if we try to read a nil response.
 	ErrRespEmpty = errors.New("http response is empty")
 )
 
-// ResponseHTTP - Type for HTTP triggers response emitted by function handlers.
+// ResponseHTTP Type for HTTP triggers response emitted by function handlers.
 type ResponseHTTP struct {
 	StatusCode      int                 `json:"statusCode"`
 	Body            json.RawMessage     `json:"body"`
@@ -30,7 +30,7 @@ func IsJSON(bytes []byte) bool {
 	return json.Unmarshal(bytes, &js) == nil
 }
 
-// GetResponse - Transform a response string into an HTTP Response structure.
+// GetResponse Transform a response string into an HTTP Response structure.
 func GetResponse(response *http.Response) (*ResponseHTTP, error) {
 	if response == nil {
 		return nil, ErrRespEmpty

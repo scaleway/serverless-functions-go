@@ -33,16 +33,8 @@ const (
 	contentTypeHeaderKey = "Content-Type"
 )
 
-// NewInvoker - Initialize runtime configuration to execute function handler
-// runtimeBinaryPath - Absolute Path to runtime binary (e.g. /usr/bin/python3, /usr/bin/node)
-// runtimeBridgePath - Absolute Path to runtime bridge script to start sub-runtime (e.g. /home/app/index.js)
-// handlerFilePath - Absolute Path to function handler file (e.g. /home/app/function/myFunction.js for JavaScript or /home/app/function/myHandler for a binary file)
-// handlerName - Name of the exported function to use as a Handler (Only for non-compiled languages) to dynamically import function (e.g. handler)
-// upstreamURL - URL to sub-runtime HTTP server (e.g. http://localhost:8081)
-// isBinaryHandler - Wether function Handler is a binary (Compiled languages).
+// NewInvoker Initialize runtime configuration to execute function handler
 func NewInvoker(runtimeBinaryPath, runtimeBridgePath, handlerFilePath, handlerName, upstreamURL string, isBinaryHandler bool) (*FunctionInvoker, error) {
-	// Need binary path => /usr/local/bin/python3
-	// Need runtime bridgle file path => /home/app/runtimes/python3/index.py
 	return &FunctionInvoker{
 		RuntimeBridge:   runtimeBridgePath,
 		RuntimeBinary:   runtimeBinaryPath,
@@ -54,7 +46,7 @@ func NewInvoker(runtimeBinaryPath, runtimeBridgePath, handlerFilePath, handlerNa
 	}, nil
 }
 
-// Execute - a given function handler, and handle response.
+// Execute a given function handler, and handle response.
 func (fn *FunctionInvoker) Execute(event interface{}, context ExecutionContext, triggerType TriggerType) (*http.Request, error) {
 	reqBody := CoreRuntimeRequest{
 		Event:       event,
