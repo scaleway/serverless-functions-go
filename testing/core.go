@@ -49,7 +49,7 @@ func CoreProcessing(httpResp http.ResponseWriter, httpReq *http.Request, handler
 		panic(err)
 	}
 
-	SubProcessing(httpResp, reqForFaaS)
+	_ = SubProcessing(httpResp, reqForFaaS)
 
 	reqId, err := uuid.NewUUID()
 	if err != nil {

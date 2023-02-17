@@ -18,13 +18,13 @@ type subRuntimeRequest struct {
 
 // SubProcessing simulates speicifc go workflow that can happens in the FaaS environment.
 // The request of the body must complies with subRuntimeRequest type to be processed.
-func SubProcessing(httpResp http.ResponseWriter, httpReq *http.Request) {
+func SubProcessing(httpResp http.ResponseWriter, httpReq *http.Request) error {
 	bodyBytes, err := io.ReadAll(httpReq.Body)
 	if err != nil {
 		httpResp.WriteHeader(http.StatusInternalServerError)
 		_, _ = httpResp.Write([]byte(err.Error()))
 
-		return
+		return err
 	}
 
 	var req subRuntimeRequest
@@ -32,7 +32,7 @@ func SubProcessing(httpResp http.ResponseWriter, httpReq *http.Request) {
 		httpResp.WriteHeader(http.StatusInternalServerError)
 		_, _ = httpResp.Write([]byte("Cannot unmarshal event from core runtime"))
 
-		return
+		return err
 	}
 
 	httpReq.Method = req.Event.HTTPMethod
@@ -50,4 +50,6 @@ func SubProcessing(httpResp http.ResponseWriter, httpReq *http.Request) {
 	httpReq.URL.RawQuery = params.Encode()
 
 	httpReq.Body = io.NopCloser(strings.NewReader(req.Event.Body))
+
+	return nil
 }
