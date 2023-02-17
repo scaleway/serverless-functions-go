@@ -64,7 +64,7 @@ func CoreProcessing(httpResp http.ResponseWriter, httpReq *http.Request, handler
 	reqForFaaS.Header.Add("X-Forwarded-For", "100.1.1.2")
 	reqForFaaS.Header.Add("X-Forwarded-Proto", "http")
 	reqForFaaS.Header.Add("X-Request-Id", reqId.String())
-	reqForFaaS.Header.Add("X-Envoy-External-Adrdress", httpReq.RemoteAddr)
+	reqForFaaS.Header.Add("X-Envoy-External-Address", httpReq.RemoteAddr)
 
 	writerRecorder := httptest.NewRecorder()
 	handler(writerRecorder, reqForFaaS)
