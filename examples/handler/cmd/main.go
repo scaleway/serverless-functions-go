@@ -2,7 +2,7 @@ package main
 
 import (
 	scw "github.com/scaleway/serverless-functions-go/examples/handler"
-	server "github.com/scaleway/serverless-functions-go/framework"
+	server "github.com/scaleway/serverless-functions-go/testing"
 )
 
 func main() {
