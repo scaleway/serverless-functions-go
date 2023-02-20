@@ -11,7 +11,7 @@ Get started with Scaleway Functions (we support multiple languages :rocket:):
 - [Serverless Examples](https://github.com/scaleway/serverless-examples)
 - [Scaleway Cloud Provider](https://scaleway.com)
 
-If you are looking for framework about other runtimes refer to the links below :
+Testing frameworks for Scaleway Serverless Functions in other languages can be found here:
 
 - [Node](https://github.com/scaleway/serverless-functions-node)
 - [Python](https://github.com/scaleway/serverless-functions-python)
