@@ -29,7 +29,7 @@ func CoreProcessing(httpResp http.ResponseWriter, httpReq *http.Request, handler
 	httpResp.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 
 	if isRejectedRequest(httpReq) {
-		log.Default().Print("request can be rejected for calling favico or robots.txt\n")
+		log.Default().Println("request can be rejected for calling favico or robots.txt")
 	}
 
 	if httpReq.ContentLength > payloadSizeWarn {
