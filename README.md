@@ -7,7 +7,7 @@ Serverless Funcions makes it easy to deploy, scale, optimise your workloads on t
 Get started with Scaleway Functions (we support multiple languages :rocket:):
 
 - [Scaleway Serverless Functions Documentation](https://www.scaleway.com/en/docs/serverless/functions/quickstart/)
-- [Serverless Scaleway plugin](https://github.com/scaleway/serverless-scaleway-functions)
+- [Scaleway Serverless Framework plugin](https://github.com/scaleway/serverless-scaleway-functions)
 - [Serverless Examples](https://github.com/scaleway/serverless-examples)
 - [Scaleway Cloud Provider](https://scaleway.com)
 
