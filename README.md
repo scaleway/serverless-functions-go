@@ -4,7 +4,7 @@ Scaleway Serverless Functions is a framework to provide a good developer experie
 
 Serverless Funcions makes it easy to deploy, scale, optimise your workloads on the cloud.
 
-Get started with Scaleway Functions (we support multiple langages :rocket:) :
+Get started with Scaleway Functions (we support multiple languages :rocket:):
 
 - [Scaleway Serverless Functions Documentation](https://www.scaleway.com/en/docs/serverless/functions/quickstart/)
 - [Serverless Scaleway plugin](https://github.com/scaleway/serverless-scaleway-functions)
