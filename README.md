@@ -111,7 +111,7 @@ Your function will be deployed in an environment that allows your function to ea
 different pieces of software with different roles. This stack also changes headers, input and output of your function, that's why
 this tool has been developed to simulate this parts.
 
-**Do I need to deploy my fonction differently ?**
+**Do I need to deploy my function differently ?**
 
 No. This framework does not affect deployment nor performance.
 
