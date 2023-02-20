@@ -8,7 +8,7 @@ Get started with Scaleway Functions (we support multiple languages :rocket:):
 
 - [Scaleway Serverless Functions Documentation](https://www.scaleway.com/en/docs/serverless/functions/quickstart/)
 - [Scaleway Serverless Framework plugin](https://github.com/scaleway/serverless-scaleway-functions)
-- [Serverless Examples](https://github.com/scaleway/serverless-examples)
+- [Scaleway Serverless Examples](https://github.com/scaleway/serverless-examples)
 - [Scaleway Cloud Provider](https://scaleway.com)
 
 Testing frameworks for Scaleway Serverless Functions in other languages can be found here:
