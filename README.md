@@ -50,7 +50,7 @@ If you have compatibility issues, please see the help section.
 
 ## 🎓 Contributing
 
-There are many ways to contribute to Scaleway Serverless FaaS, Serverless ecosystem evolution is amazing and you can take part of this by submitting new proposals, ideas, submit bugs and contribute to documentation.
+We welcome all contributions to our open-source projects, please see our contributing guidelines <link>.
 
 Do not hesitate to raise issues and pull requests we will have a look at it.
 
