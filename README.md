@@ -14,9 +14,9 @@ Get started with Scaleway Functions (we support multiple languages :rocket:):
 Testing frameworks for Scaleway Serverless Functions in other languages can be found here:
 
 - [Node](https://github.com/scaleway/serverless-functions-node)
+- [PHP](https://github.com/scaleway/serverless-functions-php)
 - [Python](https://github.com/scaleway/serverless-functions-python)
 - [Rust](https://github.com/scaleway/serverless-functions-rust)
-- [PHP](https://github.com/scaleway/serverless-functions-php)
 
 ## 🚀 Features
 
