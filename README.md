@@ -41,7 +41,7 @@ What this packages does not :
   to monitor your application.
 - **Build functions**: When your function is uploaded we build it in an environment that can be different than yours. Our build pipelines supports
   tons of different packages but sometimes it requires specific setup, as example if your function requires specific 3D system
-  libraries from your GPU card provider. In case of deployment error please check help section.
+If you have compatibility issues, please see the help section.
 
 ## 🛟 Help & support
 
