@@ -58,7 +58,7 @@ Do not hesitate to raise issues and pull requests we will have a look at it.
 
 In order to run the function locally you need to add an entry point to serve your function.
 
-So create a new file in your project in a folder that is not required by your handler, example : `cmd/main.go`.
+This entrypoint should be put in a directory not required by your handler, e.g. `cmd/main.go`.
 
 In your `run/main.go` add the following code to invoke your function :
 
