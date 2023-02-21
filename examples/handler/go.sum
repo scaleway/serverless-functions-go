@@ -1,0 +1,10 @@
+github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
+github.com/google/uuid v1.3.0 h1:t6JiXgmwXMjEs8VusXIJk2BXHsn+wx8BZdTaoZ5fu7I=
+github.com/google/uuid v1.3.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
+github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
+github.com/scaleway/serverless-functions-go v0.0.0-20230217155921-9eb66989a31b h1:eiX1k8D1/9e/sLKo/PWq2xx6DgFeTMZHGWBuQQ6vFI8=
+github.com/scaleway/serverless-functions-go v0.0.0-20230217155921-9eb66989a31b/go.mod h1:zsEHdqKoWJCeGeXD77TR8gR7nrT5Wiqv8bQvyd4iH90=
+github.com/scaleway/serverless-functions-go v0.0.0-20230217162834-acb5d22871fc h1:E+yerOYnqQgc7tA39VUPlRR8/6FcsigINc2Lm5ytTBI=
+github.com/scaleway/serverless-functions-go v0.0.0-20230217162834-acb5d22871fc/go.mod h1:zsEHdqKoWJCeGeXD77TR8gR7nrT5Wiqv8bQvyd4iH90=
+github.com/stretchr/testify v1.8.1 h1:w7B6lhMri9wdJUVmEZPGGhZzrYTPvgJArz7wNPgYKsk=
+gopkg.in/yaml.v3 v3.0.1 h1:fxVm/GzAzEWqLHuvctI91KS9hhNmmWOoWu0XTYJS7CA=
