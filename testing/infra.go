@@ -6,8 +6,8 @@ import (
 	"github.com/google/uuid"
 )
 
-// InfraProcessing simulates the infrastructure layer where your FaaS will be deployed.
-func InfraProcessing(httpReq *http.Request) {
+// IngressProcessing simulates the infrastructure layer where your FaaS will be deployed.
+func IngressProcessing(httpReq *http.Request) {
 	reqId, err := uuid.NewUUID()
 	if err != nil {
 		panic(err)
