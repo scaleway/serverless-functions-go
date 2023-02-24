@@ -6,8 +6,8 @@ import (
 	"github.com/google/uuid"
 )
 
-// IngressProcessing simulates the infrastructure layer where your FaaS will be deployed.
-func IngressProcessing(httpReq *http.Request) {
+// InjectIngressHeaders simulates the infrastructure input layer where your FaaS will be deployed.
+func InjectIngressHeaders(httpReq *http.Request) {
 	reqId, err := uuid.NewUUID()
 	if err != nil {
 		panic(err)
@@ -22,4 +22,9 @@ func IngressProcessing(httpReq *http.Request) {
 	httpReq.Header.Add("X-Forwarded-Proto", "http")
 	httpReq.Header.Add("X-Request-Id", reqId.String())
 	httpReq.Header.Add("X-Envoy-External-Address", httpReq.RemoteAddr)
+}
+
+// InjectEgressHeaders simulates the infrastructure output layer where your FaaS will be deployed.
+func InjectEgressHeaders(httpResp http.ResponseWriter) {
+	httpResp.Header().Set("server", "envoy")
 }
