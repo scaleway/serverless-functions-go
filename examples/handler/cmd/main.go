@@ -7,5 +7,5 @@ import (
 
 func main() {
 	// Replace "Handle" with your function handler name if necessary
-	server.ScalewayRouter(scw.Handle, server.WithPort(8080))
+	server.ServeHandlerLocally(scw.Handle, server.WithPort(8080))
 }

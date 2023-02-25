@@ -11,12 +11,12 @@ import (
 // Keep the handler to the function .
 var localHandler function.ScwFuncV1
 
-// ScalewayRouter is the entry point for offline testing. It will serve the handler to a local webserver.
+// ServeHandlerLocally is the entry point for offline testing. It will serve the handler to a local webserver.
 // Read options.go to check advanced paramenter and documentation.
 //
 // Note that if handler function panics in real life it would make your function return error 500 but
 // in order to keep error trace panic will occurs anywhen while using this testing server.
-func ScalewayRouter(handler function.ScwFuncV1, options ...Option) {
+func ServeHandlerLocally(handler function.ScwFuncV1, options ...Option) {
 	localHandler = handler
 
 	server := Server{
