@@ -56,10 +56,10 @@ func (fn *FunctionInvoker) Execute(event interface{}, context ExecutionContext, 
 		TriggerType: triggerType,
 	}
 
-	return fn.streamRequest(reqBody)
+	return fn.StreamRequest(reqBody)
 }
 
-func (fn *FunctionInvoker) streamRequest(reqBody CoreRuntimeRequest) (*http.Request, error) {
+func (fn *FunctionInvoker) StreamRequest(reqBody CoreRuntimeRequest) (*http.Request, error) {
 	bodyJSON, err := json.Marshal(reqBody)
 	if err != nil {
 		return nil, err

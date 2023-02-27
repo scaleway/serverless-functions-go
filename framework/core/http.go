@@ -2,9 +2,13 @@ package core
 
 import (
 	"encoding/base64"
+	"encoding/json"
 	"net/http"
+	"strconv"
 	"strings"
 )
+
+const headerContentLen = "Content-Length"
 
 // APIGatewayProxyRequest contains data coming from the API Gateway proxy.
 type APIGatewayProxyRequest struct {
@@ -70,5 +74,54 @@ func FormatEventHTTP(req *http.Request, bodyBytes []byte) APIGatewayProxyRequest
 			Stage:      "",
 			HTTPMethod: req.Method,
 		},
+	}
+}
+
+// HydrateHttpResponse will try to fill the response writer with content of body. Addtionaly it adds
+// Content-Length header, this has to by done always before any call to Write on the body.
+func HydrateHTTPResponse(resp http.ResponseWriter, body json.RawMessage, statusCode int) {
+	// when lambda returns a string as body it expects to return it without json encoding
+	var bodyString string
+	err := json.Unmarshal(body, &bodyString)
+	if err == nil {
+		resp.Header().Set(headerContentLen, strconv.Itoa(len(bodyString)))
+		resp.WriteHeader(statusCode)
+
+		_, _ = resp.Write([]byte(bodyString))
+
+		return
+	}
+
+	resp.Header().Set(headerContentLen, strconv.Itoa(len(body)))
+	resp.WriteHeader(statusCode)
+
+	_, _ = resp.Write(body)
+}
+
+func IsRejectedRequest(request *http.Request) bool {
+	return request.URL.Path == "/favicon.ico" || request.URL.Path == "/robots.txt"
+}
+
+func SetHeaders(input, output http.Header) {
+	const (
+		originCORS  = "access-control-allow-origin"
+		headersCORS = "access-control-allow-headers"
+	)
+	// first loop to reset CORS values if necessary
+	// This prevent this kind of header errors : access-control-allow-origin: *,*
+	for key := range input {
+		lowerKey := strings.ToLower(key)
+
+		if lowerKey == originCORS {
+			output.Del(originCORS)
+		} else if lowerKey == headersCORS {
+			output.Del(headersCORS)
+		}
+	}
+
+	for key, values := range input {
+		for idx := range values {
+			output.Add(key, values[idx])
+		}
 	}
 }
