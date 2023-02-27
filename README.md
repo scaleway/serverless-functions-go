@@ -18,6 +18,24 @@ Testing frameworks for Scaleway Serverless Functions in other languages can be f
 - [Python](https://github.com/scaleway/serverless-functions-python)
 - [Rust](https://github.com/scaleway/serverless-functions-rust)
 
+## ⚙️ Quickstart
+
+```sh
+ go get github.com/scaleway/serverless-functions-go
+ ```
+
+`cmd/main.go`: 
+```go
+import server "github.com/scaleway/serverless-functions-go/testing"
+
+func main() {
+	// Replace "Handle" with your function handler name if necessary
+	server.ServeHandlerLocally(Handle, server.WithPort(8080))
+}
+```
+
+For advanced usage please check [usage section](#usage).
+
 ## 🚀 Features
 
 This repository aims to provide the best experience: **local testing, utils, documentation etc...**
