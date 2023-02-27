@@ -1,6 +1,7 @@
 # Serverless Functions Go 💜
 
 [![build-and-test](https://github.com/scaleway/serverless-functions-go/actions/workflows/test.yml/badge.svg)](https://github.com/scaleway/serverless-functions-go/actions/workflows/test.yml)
+[![golangci-lint](https://github.com/scaleway/serverless-functions-go/actions/workflows/golangci-lint.yml/badge.svg)](https://github.com/scaleway/serverless-functions-go/actions/workflows/golangci-lint.yml)
 
 Scaleway Serverless Functions is a framework to provide a good developer experience to write Serverless Functions.
 
