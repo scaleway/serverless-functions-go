@@ -19,7 +19,11 @@ func TestStreamRequestBadInput(t *testing.T) {
 	assert.NotNil(t, fi)
 
 	rtReq := CoreRuntimeRequest{}
-	httpRep, err := fi.StreamRequest(rtReq)
+
+	genRequest, err := fi.StreamRequest(rtReq)
+	assert.NoError(t, err)
+
+	httpRep, err := fi.client.Do(genRequest)
 	assert.Error(t, err)
 	assert.Nil(t, httpRep)
 }
