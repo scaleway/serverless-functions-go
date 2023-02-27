@@ -1,5 +1,7 @@
 # Serverless Functions Go 💜
 
+[![build-and-test](https://github.com/scaleway/serverless-functions-go/actions/workflows/test.yml/badge.svg)](https://github.com/scaleway/serverless-functions-go/actions/workflows/test.yml)
+
 Scaleway Serverless Functions is a framework to provide a good developer experience to write Serverless Functions.
 
 Serverless Functions make it easy to deploy, scale, and optimize your workloads on the cloud.
