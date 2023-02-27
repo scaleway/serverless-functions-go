@@ -121,3 +121,16 @@ To make development and understanding of this repository we tried to keep the pa
 
 - [framework](./framework/) folder is used to store all the code that you can import into your project
 - [testing](./testing) contains all the cool tools to work locally with your function 😎
+
+
+## Development
+
+This repository is at its early stage and is still in active development.
+If you are looking for a way to contribute please read [CONTRIBUTING.md](./docs/CONTRIBUTING.md).
+
+## Reach Us
+
+We love feedback.
+Don't hesitate to open a [Github issue](https://github.com/scaleway/serverless-functions/go/issues/new) or
+feel free to reach us on [Scaleway Slack community](https://slack.scaleway.com/),
+we are waiting for you on [#serverless-functions](https://scaleway-community.slack.com/app_redirect?channel=serverless-functions).
