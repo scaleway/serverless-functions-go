@@ -85,6 +85,7 @@ func TestGetResponseAllFields(t *testing.T) {
 	assert.False(t, resp.IsBase64Encoded)
 }
 
+//nolint:dupl
 func TestGetResponseB64Encoded(t *testing.T) {
 	t.Parallel()
 
@@ -109,6 +110,7 @@ func TestGetResponseB64Encoded(t *testing.T) {
 	assert.True(t, resp.IsBase64Encoded)
 }
 
+//nolint:dupl
 func TestGetResponseJsonInJsonBody(t *testing.T) {
 	t.Parallel()
 
@@ -132,6 +134,7 @@ func TestGetResponseJsonInJsonBody(t *testing.T) {
 	assert.False(t, resp.IsBase64Encoded)
 }
 
+//nolint:dupl
 func TestGetResponseJsonInJson(t *testing.T) {
 	t.Parallel()
 

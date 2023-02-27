@@ -1,6 +1,7 @@
 package core
 
 import (
+	"context"
 	"io"
 	"net/http"
 	"net/http/httptest"
@@ -23,6 +24,7 @@ func TestStreamRequestBadInput(t *testing.T) {
 	genRequest, err := fi.StreamRequest(rtReq)
 	assert.NoError(t, err)
 
+	//nolint:bodyclose
 	httpRep, err := fi.client.Do(genRequest)
 	assert.Error(t, err)
 	assert.Nil(t, httpRep)
@@ -78,7 +80,7 @@ func TestStreamExecute(t *testing.T) {
 
 	stringReader := strings.NewReader(returnString)
 	stringReadCloser := io.NopCloser(stringReader)
-	httpreq, err := http.NewRequest(http.MethodPost, server.URL, stringReadCloser)
+	httpreq, err := http.NewRequestWithContext(context.Background(), http.MethodPost, server.URL, stringReadCloser)
 	require.NoError(t, err)
 
 	event, err := FormatEvent(httpreq, TriggerTypeHTTP)

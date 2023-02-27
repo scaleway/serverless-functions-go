@@ -82,8 +82,8 @@ func FormatEventHTTP(req *http.Request, bodyBytes []byte) APIGatewayProxyRequest
 func HydrateHTTPResponse(resp http.ResponseWriter, body json.RawMessage, statusCode int) {
 	// when lambda returns a string as body it expects to return it without json encoding
 	var bodyString string
-	err := json.Unmarshal(body, &bodyString)
-	if err == nil {
+
+	if err := json.Unmarshal(body, &bodyString); err == nil {
 		resp.Header().Set(headerContentLen, strconv.Itoa(len(bodyString)))
 		resp.WriteHeader(statusCode)
 

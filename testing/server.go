@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net"
 	"net/http"
+	"time"
 
 	"github.com/scaleway/serverless-functions-go/framework/function"
 )
@@ -34,7 +35,15 @@ func ServeHandlerLocally(handler function.ScwFuncV1, options ...Option) {
 
 	fmt.Println("Using port:", listener.Addr().(*net.TCPAddr).Port)
 
-	if err := http.Serve(listener, http.HandlerFunc(mainHandlerFnc)); err != nil {
+	srv := &http.Server{
+		ReadTimeout:       5 * time.Second,
+		WriteTimeout:      5 * time.Second,
+		IdleTimeout:       30 * time.Second,
+		ReadHeaderTimeout: 7 * time.Second,
+		Handler:           http.HandlerFunc(mainHandlerFnc),
+	}
+
+	if err := srv.Serve(listener); err != nil {
 		panic(err)
 	}
 }

@@ -36,6 +36,7 @@ func CoreProcessing(httpResp http.ResponseWriter, httpReq *http.Request, handler
 	formattedRequest := core.FormatEventHTTP(httpReq, bodyBytes)
 
 	invoker := core.FunctionInvoker{}
+
 	reqForFaaS, err := invoker.Execute(formattedRequest, core.GetExecutionContext(), core.TriggerTypeHTTP)
 	if err != nil {
 		panic(err)
@@ -48,7 +49,16 @@ func CoreProcessing(httpResp http.ResponseWriter, httpReq *http.Request, handler
 	writerRecorder := httptest.NewRecorder()
 	handler(writerRecorder, reqForFaaS)
 
-	coreResp, err := core.GetResponse(writerRecorder.Result())
+	// Body is closed but linter reports it.
+	//nolint:bodyclose
+	recorderResp := writerRecorder.Result()
+	defer func() {
+		if recorderResp.Body != nil {
+			recorderResp.Body.Close()
+		}
+	}()
+
+	coreResp, err := core.GetResponse(recorderResp)
 	if err != nil {
 		panic(err)
 	}

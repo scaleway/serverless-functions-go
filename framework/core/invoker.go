@@ -2,6 +2,7 @@ package core
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"net/http"
 )
@@ -34,7 +35,13 @@ const (
 )
 
 // NewInvoker Initialize runtime configuration to execute function handler
-func NewInvoker(runtimeBinaryPath, runtimeBridgePath, handlerFilePath, handlerName, upstreamURL string, isBinaryHandler bool) (*FunctionInvoker, error) {
+func NewInvoker(
+	runtimeBinaryPath,
+	runtimeBridgePath,
+	handlerFilePath, handlerName,
+	upstreamURL string,
+	isBinaryHandler bool,
+) (*FunctionInvoker, error) {
 	return &FunctionInvoker{
 		RuntimeBridge:   runtimeBridgePath,
 		RuntimeBinary:   runtimeBinaryPath,
@@ -47,10 +54,10 @@ func NewInvoker(runtimeBinaryPath, runtimeBridgePath, handlerFilePath, handlerNa
 }
 
 // Execute a given function handler, and handle response.
-func (fn *FunctionInvoker) Execute(event interface{}, context ExecutionContext, triggerType TriggerType) (*http.Request, error) {
+func (fn *FunctionInvoker) Execute(event interface{}, ctx ExecutionContext, triggerType TriggerType) (*http.Request, error) {
 	reqBody := CoreRuntimeRequest{
 		Event:       event,
-		Context:     context,
+		Context:     ctx,
 		HandlerName: fn.HandlerName,
 		HandlerPath: fn.HandlerFilePath,
 		TriggerType: triggerType,
@@ -59,6 +66,7 @@ func (fn *FunctionInvoker) Execute(event interface{}, context ExecutionContext, 
 	return fn.StreamRequest(reqBody)
 }
 
+//nolint:gocritic
 func (fn *FunctionInvoker) StreamRequest(reqBody CoreRuntimeRequest) (*http.Request, error) {
 	bodyJSON, err := json.Marshal(reqBody)
 	if err != nil {
@@ -78,7 +86,7 @@ func (fn *FunctionInvoker) StreamRequest(reqBody CoreRuntimeRequest) (*http.Requ
 
 	body := bytes.NewReader(bodyJSON)
 
-	request, err := http.NewRequest(http.MethodPost, fn.upstreamURL, body)
+	request, err := http.NewRequestWithContext(context.Background(), http.MethodPost, fn.upstreamURL, body)
 	if err != nil {
 		return nil, err
 	}

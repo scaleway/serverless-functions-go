@@ -86,6 +86,7 @@ func GetResponse(response *http.Response) (*ResponseHTTP, error) {
 					// avoid overriding key with empty value.
 					continue
 				}
+
 				handlerResponse.Headers[key] = val
 			}
 		}

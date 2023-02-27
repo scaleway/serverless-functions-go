@@ -8,7 +8,7 @@ import (
 
 // InjectIngressHeaders simulates the infrastructure input layer where your FaaS will be deployed.
 func InjectIngressHeaders(httpReq *http.Request) {
-	reqId, err := uuid.NewUUID()
+	reqID, err := uuid.NewUUID()
 	if err != nil {
 		panic(err)
 	}
@@ -20,7 +20,7 @@ func InjectIngressHeaders(httpReq *http.Request) {
 	httpReq.Header.Add("X-Forwarded-For", "127.0.0.1")
 	httpReq.Header.Add("X-Forwarded-For", "127.0.0.2")
 	httpReq.Header.Add("X-Forwarded-Proto", "http")
-	httpReq.Header.Add("X-Request-Id", reqId.String())
+	httpReq.Header.Add("X-Request-Id", reqID.String())
 	httpReq.Header.Add("X-Envoy-External-Address", httpReq.RemoteAddr)
 }
 
