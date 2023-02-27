@@ -87,13 +87,15 @@ import (
   // "localfunc" is the module name located in your go.mod. To generate a go.mod with localfunc as name you
   // can use the following command : go mod init localfunc
   // Or you can replace "localfunc" with your own module name.
-	func "localfunc"
+	localfunc "github.com/scaleway/serverless-functions-go/examples/handler"
+	server "github.com/scaleway/serverless-functions-go/testing"
 )
 
 func main() {
 	// Replace "Handle" with your function handler name if necessary
-	server.ServeHandlerLocally(Handle, server.WithPort(8080))
+	server.ServeHandlerLocally(localfunc.Handle, server.WithPort(8080))
 }
+
 ```
 
 This file will expose your handler on a local web server allowing you to test your function.
