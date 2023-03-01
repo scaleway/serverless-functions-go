@@ -14,6 +14,8 @@ import (
 )
 
 func TestServSimpleResponse(t *testing.T) {
+	t.Parallel()
+
 	const testingMessage = "simple test"
 
 	handler := func(w http.ResponseWriter, r *http.Request) {
@@ -60,6 +62,8 @@ func TestServSimpleResponse(t *testing.T) {
 }
 
 func TestServDumpResponse(t *testing.T) {
+	t.Parallel()
+
 	handler := func(w http.ResponseWriter, r *http.Request) {
 		dump, err := httputil.DumpRequest(r, true)
 		assert.NoError(t, err)
