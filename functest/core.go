@@ -1,4 +1,4 @@
-package testing
+package functest
 
 import (
 	"encoding/base64"
@@ -42,6 +42,7 @@ func CoreProcessing(httpResp http.ResponseWriter, httpReq *http.Request, handler
 		panic(err)
 	}
 
+	reqForFaaS.Host = httpReq.Host
 	_ = SubProcessing(httpResp, reqForFaaS)
 
 	InjectIngressHeaders(reqForFaaS)

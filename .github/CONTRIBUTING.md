@@ -62,8 +62,8 @@ If you have questions or comments on your code, feel free to correct these in yo
 The goal of the following guidelines is to have Pull Requests (PRs) that are fairly easy to review and comprehend, and code that is easy to maintain in the future.
 
 - **Pull Request title should respect [conventional commits](https://www.conventionalcommits.org/en/v1.0.0) specifications** and be clear on what is being changed.
-    - A fix for local testing will be titled `fix(local-testing): ...`
-    - A fix for http requests will be titled `fix(http): ...`
+  - A fix for local testing will be titled `fix(local-testing): ...`
+  - A fix for http requests will be titled `fix(http): ...`
 - **Keep it readable for human reviewers** and prefer a subset of functionality (code) with tests and documentation over delivering them separately
 <!-- - **Don't forget commenting code** to help reviewers understand and to keep [our Go Report Card](https://goreportcard.com/report/github.com/scaleway/serverless-functions-go) at A+ -->
 - **Notify Work In Progress PRs** by prefixing the title with `[WIP]`
@@ -79,4 +79,3 @@ Keep in mind only the **pull request title** will be used as commit message as w
 See [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
 
 Thank you for reading through all of this, if you have any question feel free to [reach us](../README.md#reach-us)!
- 
