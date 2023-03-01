@@ -25,9 +25,10 @@ Testing frameworks for Scaleway Serverless Functions in other languages can be f
 
 ```sh
  go get github.com/scaleway/serverless-functions-go
- ```
+```
 
-`cmd/main.go`: 
+`cmd/main.go`:
+
 ```go
 import "github.com/scaleway/serverless-functions-go/functest"
 
@@ -37,7 +38,7 @@ func main() {
 }
 ```
 
-For advanced usage please check [usage section](#usage).
+For advanced usage please check [usage section](#-advanced-usage).
 
 ## 🚀 Features
 
@@ -57,12 +58,12 @@ What this package does:
 What this package does not:
 
 - **Simulate performance**: Scaleway FaaS lets you choose different options for CPU/RAM that can have an impact
-on your development. This package does not provide specific limits for your function on local testing but you can
+  on your development. This package does not provide specific limits for your function on local testing but you can
   add [Profile your application](https://go.dev/blog/pprof) or you can use our metrics available in [Scaleway Console](https://console.scaleway.com/)
   to monitor your application.
 - **Build functions**: When your function is uploaded we build it in an environment that can be different than yours. Our build pipelines support
   tons of different packages but sometimes it requires a specific setup, for example, if your function requires a specific 3D system library.
-If you have compatibility issues, please see the help section.
+  If you have compatibility issues, please see the help section.
 
 ## 🛟 Help & support
 
@@ -144,7 +145,6 @@ To make development and understanding of this repository we tried to keep the pa
 
 - [framework](./framework/) folder is used to store all the code that you can import into your project
 - [functest](./functest) contains all the cool tools to work locally with your function 😎
-
 
 ## 🧑‍💻 Development
 
