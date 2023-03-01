@@ -9,7 +9,7 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	scw "github.com/scaleway/serverless-functions-go/testing"
+	"github.com/scaleway/serverless-functions-go/functest"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -25,7 +25,7 @@ func TestServSimpleResponse(t *testing.T) {
 		assert.Equal(t, "http", r.Header.Get("X-Forwarded-Proto"))
 	}
 
-	go scw.ServeHandlerLocally(handler, scw.WithPort(49860))
+	go functest.ServeHandlerLocally(handler, functest.WithPort(49860))
 
 	time.Sleep(2 * time.Second)
 
@@ -66,12 +66,12 @@ func TestServDumpResponse(t *testing.T) {
 		fmt.Fprintf(w, "%s\n", string(dump))
 	}
 
-	go scw.ServeHandlerLocally(handler, scw.WithPort(49860))
+	go functest.ServeHandlerLocally(handler, functest.WithPort(49861))
 
 	time.Sleep(2 * time.Second)
 
 	//nolint:noctx
-	resp, err := http.Get("http://localhost:49860")
+	resp, err := http.Get("http://localhost:49861")
 	assert.NoError(t, err)
 
 	defer resp.Body.Close()

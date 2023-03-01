@@ -29,11 +29,11 @@ Testing frameworks for Scaleway Serverless Functions in other languages can be f
 
 `cmd/main.go`: 
 ```go
-import server "github.com/scaleway/serverless-functions-go/testing"
+import "github.com/scaleway/serverless-functions-go/functest"
 
 func main() {
 	// Replace "Handle" with your function handler name if necessary
-	server.ServeHandlerLocally(Handle, server.WithPort(8080))
+	functest.ServeHandlerLocally(Handle, functest.WithPort(8080))
 }
 ```
 
@@ -91,12 +91,12 @@ import (
   // can use the following command : go mod init localfunc
   // Or you can replace "localfunc" with your own module name.
 	localfunc "github.com/scaleway/serverless-functions-go/examples/handler"
-	server "github.com/scaleway/serverless-functions-go/testing"
+	"github.com/scaleway/serverless-functions-go/functest"
 )
 
 func main() {
 	// Replace "Handle" with your function handler name if necessary
-	server.ServeHandlerLocally(localfunc.Handle, server.WithPort(8080))
+	functest.ServeHandlerLocally(localfunc.Handle, functest.WithPort(8080))
 }
 
 ```
@@ -143,7 +143,7 @@ No. This framework does not affect deployment nor performance.
 To make development and understanding of this repository we tried to keep the path of the request natural.
 
 - [framework](./framework/) folder is used to store all the code that you can import into your project
-- [testing](./testing) contains all the cool tools to work locally with your function 😎
+- [functest](./functest) contains all the cool tools to work locally with your function 😎
 
 
 ## Development
