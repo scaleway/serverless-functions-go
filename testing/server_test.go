@@ -31,6 +31,8 @@ func TestServ(t *testing.T) {
 	resp, err := http.Get("http://localhost:49860")
 	assert.NoError(t, err)
 
+	defer resp.Body.Close()
+
 	assert.NotNil(t, resp)
 	assert.Equal(t, http.StatusOK, resp.StatusCode)
 
