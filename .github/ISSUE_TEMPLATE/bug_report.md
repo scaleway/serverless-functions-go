@@ -1,7 +1,7 @@
 ---
-name: 🚀 Feature request
-about: I have a suggestion (and might want to implement it myself 🙂)!
-labels: enhancement
+name: 🐛 Bug Report
+about: Unexpected or broken behavior of the framework 🤔
+labels: bug
 ---
 
 <!--- Please keep this note for the community --->
