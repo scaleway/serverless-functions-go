@@ -31,9 +31,11 @@ func ServeHandlerLocally(handler function.ScwFuncV1, options ...Option) {
 	fmt.Println("Using port:", listener.Addr().(*net.TCPAddr).Port)
 
 	decoratedHandler := func(httpResp http.ResponseWriter, httpReq *http.Request) {
-		defer httpReq.Body.Close()
-
 		CoreProcessing(httpResp, httpReq, handler)
+
+		if httpReq.Body != nil && httpReq.Body != http.NoBody {
+			httpReq.Body.Close()
+		}
 	}
 
 	srv := &http.Server{
