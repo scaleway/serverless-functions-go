@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"net/http/httputil"
 	"testing"
 	"time"
 
@@ -12,7 +13,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestServ(t *testing.T) {
+func TestServSimpleResponse(t *testing.T) {
 	var handler func(http.ResponseWriter, *http.Request)
 
 	const testingMessage = "simple test"
@@ -21,7 +22,7 @@ func TestServ(t *testing.T) {
 		_, _ = w.Write([]byte(testingMessage))
 
 		assert.NotEmpty(t, r)
-		assert.Equal(t, "for=;proto=http", r.Header.Get("Forwarded"))
+		assert.Contains(t, r.Header.Get("Forwarded"), "proto=http")
 		assert.Equal(t, "activator", r.Header.Get("K-Proxy-Request"))
 		assert.Equal(t, "http", r.Header.Get("X-Forwarded-Proto"))
 	}
@@ -48,8 +49,8 @@ func TestServ(t *testing.T) {
 	assert.NotEmpty(t, resp.Header.Get("User-Agent"))
 	assert.Equal(t, "text/plain; charset=utf-8", resp.Header.Get("Content-Type"))
 	assert.Equal(t, "*", resp.Header.Get("Access-Control-Allow-Origin"))
-	assert.Equal(t, "for=;proto=http", resp.Header.Get("forwarded"))
-	assert.Equal(t, "", resp.Header.Get("X-Envoy-External-Address"))
+	assert.Contains(t, resp.Header.Get("forwarded"), "proto=http")
+	assert.NotEmpty(t, resp.Header.Get("X-Envoy-External-Address"))
 	assert.Equal(t, "Content-Type", resp.Header.Get("Access-Control-Allow-Headers"))
 	assert.Equal(t, fmt.Sprintf("%d", (len(testingMessage))), resp.Header.Get("Content-Length"))
 
@@ -57,4 +58,38 @@ func TestServ(t *testing.T) {
 	assert.NoError(t, err)
 
 	assert.Equal(t, testingMessage, string(bodyBytes))
+}
+
+func TestServDumpResponse(t *testing.T) {
+	var handler func(http.ResponseWriter, *http.Request)
+
+	handler = func(w http.ResponseWriter, r *http.Request) {
+		dump, err := httputil.DumpRequest(r, true)
+		assert.NoError(t, err)
+		fmt.Fprintf(w, "%s\n", string(dump))
+	}
+
+	go scw.ServeHandlerLocally(handler, scw.WithPort(49860))
+
+	time.Sleep(2 * time.Second)
+
+	resp, err := http.Get("http://localhost:49860")
+	assert.NoError(t, err)
+
+	defer resp.Body.Close()
+
+	assert.NotNil(t, resp)
+
+	respBytes, err := io.ReadAll(resp.Body)
+	assert.NoError(t, err)
+	assert.NotEmpty(t, respBytes)
+	respStr := string(respBytes)
+
+	assert.Contains(t, respStr, "Host:")
+	assert.Contains(t, respStr, "proto=http")
+	assert.Contains(t, respStr, "K-Proxy-Request: activator")
+	assert.Contains(t, respStr, "X-Envoy-External-Address:")
+	assert.Contains(t, respStr, "X-Forwarded-For:")
+	assert.Contains(t, respStr, "X-Forwarded-Proto: http")
+	assert.Contains(t, respStr, "X-Request-Id")
 }
