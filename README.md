@@ -5,7 +5,7 @@
 
 Scaleway Serverless Functions is a framework to provide a good developer experience to write Serverless Functions.
 
-Serverless Functions make it easy to deploy, scale, and optimize your workloads on the cloud.
+[Serverless Functions](https://www.scaleway.com/fr/serverless-functions/) make it easy to deploy, scale, and optimize your workloads on the cloud.
 
 Get started with Scaleway Functions (we support multiple languages :rocket:):
 
@@ -75,7 +75,7 @@ We welcome all contributions to our open-source projects, please see our contrib
 
 Do not hesitate to raise issues and pull requests we will have a look at them.
 
-# Usage
+## 🔬 Advanced usage
 
 To run the function locally you need to add an entry point to serve your function.
 
@@ -146,12 +146,12 @@ To make development and understanding of this repository we tried to keep the pa
 - [functest](./functest) contains all the cool tools to work locally with your function 😎
 
 
-## Development
+## 🧑‍💻 Development
 
 This repository is at its early stage and is still in active development.
 If you are looking for a way to contribute please read [CONTRIBUTING.md](./docs/CONTRIBUTING.md).
 
-## Reach Us
+## 📭 Reach Us
 
 We love feedback.
 Don't hesitate to open a [Github issue](https://github.com/scaleway/serverless-functions/go/issues/new) or
