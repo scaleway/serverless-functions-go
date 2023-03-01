@@ -4,25 +4,28 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	stdtest "testing"
+	"testing"
 	"time"
 
 	"github.com/google/uuid"
-	"github.com/scaleway/serverless-functions-go/testing"
+	scw "github.com/scaleway/serverless-functions-go/testing"
 	"github.com/stretchr/testify/assert"
 )
 
-func TestServ(t *stdtest.T) {
+func TestServ(t *testing.T) {
 	var handler func(http.ResponseWriter, *http.Request)
 
 	const testingMessage = "simple test"
 	handler = func(w http.ResponseWriter, r *http.Request) {
 		_, _ = w.Write([]byte(testingMessage))
+
+		assert.NotEmpty(t, r)
+		assert.Equal(t, "for=;proto=http", r.Header.Get("Forwarded"))
+		assert.Equal(t, "activator", r.Header.Get("K-Proxy-Request"))
+		assert.Equal(t, "http", r.Header.Get("X-Forwarded-Proto"))
 	}
 
-	go testing.ServeHandlerLocally(handler, testing.WithPort(49860))
-
-	// req := httptest.NewRequest(http.MethodGet, "/upper?word=abc", nil)
+	go scw.ServeHandlerLocally(handler, scw.WithPort(49860))
 
 	time.Sleep(2 * time.Second)
 	resp, err := http.Get("http://localhost:49860")
