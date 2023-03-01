@@ -16,6 +16,7 @@ func TestServ(t *testing.T) {
 	var handler func(http.ResponseWriter, *http.Request)
 
 	const testingMessage = "simple test"
+
 	handler = func(w http.ResponseWriter, r *http.Request) {
 		_, _ = w.Write([]byte(testingMessage))
 
@@ -28,6 +29,7 @@ func TestServ(t *testing.T) {
 	go scw.ServeHandlerLocally(handler, scw.WithPort(49860))
 
 	time.Sleep(2 * time.Second)
+
 	resp, err := http.Get("http://localhost:49860")
 	assert.NoError(t, err)
 
