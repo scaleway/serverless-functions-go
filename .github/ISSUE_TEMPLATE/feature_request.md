@@ -1,4 +1,8 @@
-
+---
+name: 🚀 Feature request
+about: I have a suggestion (and might want to implement it myself 🙂)!
+labels: enhancement
+---
 
 <!--- Please keep this note for the community --->
 
