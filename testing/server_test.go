@@ -14,11 +14,9 @@ import (
 )
 
 func TestServSimpleResponse(t *testing.T) {
-	var handler func(http.ResponseWriter, *http.Request)
-
 	const testingMessage = "simple test"
 
-	handler = func(w http.ResponseWriter, r *http.Request) {
+	handler := func(w http.ResponseWriter, r *http.Request) {
 		_, _ = w.Write([]byte(testingMessage))
 
 		assert.NotEmpty(t, r)
@@ -31,6 +29,7 @@ func TestServSimpleResponse(t *testing.T) {
 
 	time.Sleep(2 * time.Second)
 
+	//nolint:noctx
 	resp, err := http.Get("http://localhost:49860")
 	assert.NoError(t, err)
 
@@ -61,9 +60,7 @@ func TestServSimpleResponse(t *testing.T) {
 }
 
 func TestServDumpResponse(t *testing.T) {
-	var handler func(http.ResponseWriter, *http.Request)
-
-	handler = func(w http.ResponseWriter, r *http.Request) {
+	handler := func(w http.ResponseWriter, r *http.Request) {
 		dump, err := httputil.DumpRequest(r, true)
 		assert.NoError(t, err)
 		fmt.Fprintf(w, "%s\n", string(dump))
@@ -73,6 +70,7 @@ func TestServDumpResponse(t *testing.T) {
 
 	time.Sleep(2 * time.Second)
 
+	//nolint:noctx
 	resp, err := http.Get("http://localhost:49860")
 	assert.NoError(t, err)
 
