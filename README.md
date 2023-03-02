@@ -16,10 +16,7 @@ Get started with Scaleway Functions (we support multiple languages :rocket:):
 
 Testing frameworks for Scaleway Serverless Functions in other languages can be found here:
 
-- [Node](https://github.com/scaleway/serverless-functions-node)
-- [PHP](https://github.com/scaleway/serverless-functions-php)
 - [Python](https://github.com/scaleway/serverless-functions-python)
-- [Rust](https://github.com/scaleway/serverless-functions-rust)
 
 ## ⚙️ Quickstart
 
@@ -30,11 +27,11 @@ Testing frameworks for Scaleway Serverless Functions in other languages can be f
 `cmd/main.go`:
 
 ```go
-import "github.com/scaleway/serverless-functions-go/functest"
+import "github.com/scaleway/serverless-functions-go/local"
 
 func main() {
 	// Replace "Handle" with your function handler name if necessary
-	functest.ServeHandlerLocally(Handle, functest.WithPort(8080))
+	local.ServeHandler(Handle, local.WithPort(8080))
 }
 ```
 
@@ -92,12 +89,12 @@ import (
   // can use the following command : go mod init localfunc
   // Or you can replace "localfunc" with your own module name.
 	localfunc "github.com/scaleway/serverless-functions-go/examples/handler"
-	"github.com/scaleway/serverless-functions-go/functest"
+	"github.com/scaleway/serverless-functions-go/local"
 )
 
 func main() {
 	// Replace "Handle" with your function handler name if necessary
-	functest.ServeHandlerLocally(localfunc.Handle, functest.WithPort(8080))
+	local.ServeHandler(localfunc.Handle, local.WithPort(8080))
 }
 
 ```
@@ -144,7 +141,7 @@ No. This framework does not affect deployment nor performance.
 To make development and understanding of this repository we tried to keep the path of the request natural.
 
 - [framework](./framework/) folder is used to store all the code that you can import into your project
-- [functest](./functest) contains all the cool tools to work locally with your function 😎
+- [local](./local) contains all the cool tools to work locally with your function 😎
 
 ## 🧑‍💻 Development
 
