@@ -4,7 +4,7 @@
 [![golangci-lint](https://github.com/scaleway/serverless-functions-go/actions/workflows/golangci-lint.yml/badge.svg)](https://github.com/scaleway/serverless-functions-go/actions/workflows/golangci-lint.yml)
 
 Scaleway Serverless Functions Go is a framework which simplify Scaleway [Serverless Functions](https://www.scaleway.com/fr/serverless-functions/) local development. 
-It enables you to debug your function locally and provide the event data format used in Scaleway Serverless Functions.
+It brings features to debug your function locally and provides input/output data format of Scaleway Serverless Functions.
 
 Be careful, this framework does not enable you to build and deploy your function (for more information, refer to the official documentation)
 
