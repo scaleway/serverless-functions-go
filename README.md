@@ -64,17 +64,6 @@ What this package does not:
   If you have compatibility issues, please see the help section.
 
 
-## 🛟 Help & support
-
-- Scaleway support is available on Scaleway Console.
-- Additionally, you can join our [Slack Community](https://www.scaleway.com/en/docs/tutorials/scaleway-slack-community/)
-
-## 🎓 Contributing
-
-We welcome all contributions to our open-source projects, please see our contributing guidelines <link>.
-
-Do not hesitate to raise issues and pull requests we will have a look at them.
-
 ## 🔬 Advanced usage
 
 To run the function locally you need to add an entry point to serve your function.
@@ -125,14 +114,12 @@ The IDE will generate a run configuration for you, open `cmd/main.go` and run th
 
 **Why do I need an additional package to call my function?**
 
-Your Function Handler can be served by a simple HTTP server but Serverless Ecosystem involves a lot of different layers
-and this package aims to simulate everything your request will go through.
+Your Function Handler can be served by a simple HTTP server but Serverless Ecosystem involves a lot of different layers that will change changes the headers, input and output of your function. This package aims to simulate everything your request will go through to help you debug your application properly.
+This library is not mandatory to use Scaleway Serverless Functions.
 
 **How my function will be deployed**
 
-Your function will be deployed in an environment that allows your function to easily Scale up and down and it's wrapped into
-different pieces of software with different roles. This stack also changes the headers, input and output of your function, that's why
-this tool has been developed to simulate this part.
+To deploy your function please refer to our official documentation.
 
 **Do I need to deploy my function differently?**
 
@@ -149,6 +136,17 @@ To make development and understanding of this repository we tried to keep the pa
 
 This repository is at its early stage and is still in active development.
 If you are looking for a way to contribute please read [CONTRIBUTING.md](./docs/CONTRIBUTING.md).
+
+## 🛟 Help & support
+
+- Scaleway support is available on Scaleway Console.
+- Additionally, you can join our [Slack Community](https://www.scaleway.com/en/docs/tutorials/scaleway-slack-community/)
+
+## 🎓 Contributing
+
+We welcome all contributions to our open-source projects, please see our contributing guidelines <link>.
+
+Do not hesitate to raise issues and pull requests we will have a look at them.
 
 ## 📭 Reach Us
 
