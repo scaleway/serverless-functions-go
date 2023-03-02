@@ -6,7 +6,7 @@
 Scaleway Serverless Functions Go is a framework which simplify Scaleway [Serverless Functions](https://www.scaleway.com/fr/serverless-functions/) local development. 
 It brings features to debug your function locally and provides input/output data format of Scaleway Serverless Functions.
 
-Be careful, this framework does not enable you to build and deploy your function (for more information, refer to the official documentation)
+This library helps you to write functions but for deployment refer to the documentation.
 
 Get started with Scaleway Functions (we support multiple languages :rocket:):
 
