@@ -27,7 +27,7 @@ func TestServSimpleResponse(t *testing.T) {
 		assert.Equal(t, "http", r.Header.Get("X-Forwarded-Proto"))
 	}
 
-	go local.ServeHandlerLocally(handler, local.WithPort(49860))
+	go local.ServeHandler(handler, local.WithPort(49860))
 
 	time.Sleep(2 * time.Second)
 
@@ -70,7 +70,7 @@ func TestServDumpResponse(t *testing.T) {
 		fmt.Fprintf(w, "%s\n", string(dump))
 	}
 
-	go local.ServeHandlerLocally(handler, local.WithPort(49861))
+	go local.ServeHandler(handler, local.WithPort(49861))
 
 	time.Sleep(2 * time.Second)
 
