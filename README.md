@@ -148,7 +148,8 @@ If you are looking for a way to contribute please read [CONTRIBUTING.md](./.gith
 
 ## 📭 Reach Us
 
-We love feedback.
-Don't hesitate to open a [Github issue](https://github.com/scaleway/serverless-functions/go/issues/new) or
-feel free to reach us on [Scaleway Slack community](https://slack.scaleway.com/),
-we are waiting for you on [#serverless-functions](https://scaleway-community.slack.com/app_redirect?channel=serverless-functions).
+We love feedback. Feel free to:
+
+- Open a [Github issue](https://github.com/scaleway/serverless-functions-python/issues/new)
+- Send us a message on the [Scaleway Slack community](https://slack.scaleway.com/), in the
+  [#serverless-functions](https://scaleway-community.slack.com/app_redirect?channel=serverless-functions) channel.
