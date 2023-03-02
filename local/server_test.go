@@ -1,4 +1,4 @@
-package functest_test
+package local_test
 
 import (
 	"fmt"
@@ -9,7 +9,7 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	"github.com/scaleway/serverless-functions-go/functest"
+	"github.com/scaleway/serverless-functions-go/local"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -27,7 +27,7 @@ func TestServSimpleResponse(t *testing.T) {
 		assert.Equal(t, "http", r.Header.Get("X-Forwarded-Proto"))
 	}
 
-	go functest.ServeHandlerLocally(handler, functest.WithPort(49860))
+	go local.ServeHandlerLocally(handler, local.WithPort(49860))
 
 	time.Sleep(2 * time.Second)
 
@@ -70,7 +70,7 @@ func TestServDumpResponse(t *testing.T) {
 		fmt.Fprintf(w, "%s\n", string(dump))
 	}
 
-	go functest.ServeHandlerLocally(handler, functest.WithPort(49861))
+	go local.ServeHandlerLocally(handler, local.WithPort(49861))
 
 	time.Sleep(2 * time.Second)
 
