@@ -9,12 +9,12 @@ import (
 	"github.com/scaleway/serverless-functions-go/framework/function"
 )
 
-// ServeHandlerLocally is the entry point for offline testing. It will serve the handler to a local webserver.
+// ServeHandler is the entry point for offline testing. It will serve the handler to a local webserver.
 // Read options.go to check advanced paramenter and documentation.
 //
 // Note that if handler function panics in real life it would make your function return error 500 but
 // in order to keep error trace panic will occurs anywhen while using this testing server.
-func ServeHandlerLocally(handler function.ScwFuncV1, options ...Option) {
+func ServeHandler(handler function.ScwFuncV1, options ...Option) {
 	server := Server{
 		port: "0",
 	}
