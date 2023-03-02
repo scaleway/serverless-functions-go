@@ -3,9 +3,10 @@
 [![build-and-test](https://github.com/scaleway/serverless-functions-go/actions/workflows/test.yml/badge.svg)](https://github.com/scaleway/serverless-functions-go/actions/workflows/test.yml)
 [![golangci-lint](https://github.com/scaleway/serverless-functions-go/actions/workflows/golangci-lint.yml/badge.svg)](https://github.com/scaleway/serverless-functions-go/actions/workflows/golangci-lint.yml)
 
-Scaleway Serverless Functions is a framework to provide a good developer experience to write Serverless Functions.
+Scaleway Serverless Functions Go is a framework which simplify Scaleway [Serverless Functions](https://www.scaleway.com/fr/serverless-functions/) local development. 
+It enables you to debug your function locally and provide the event data format used in Scaleway Serverless Functions.
 
-[Serverless Functions](https://www.scaleway.com/fr/serverless-functions/) make it easy to deploy, scale, and optimize your workloads on the cloud.
+Be careful, this framework does not enable you to build and deploy your function (for more information, refer to the official documentation)
 
 Get started with Scaleway Functions (we support multiple languages :rocket:):
 
@@ -19,12 +20,13 @@ Testing frameworks for Scaleway Serverless Functions in other languages can be f
 - [Python](https://github.com/scaleway/serverless-functions-python)
 
 ## ⚙️ Quickstart
+To use the framework, simply add it to your main.go file
 
 ```sh
  go get github.com/scaleway/serverless-functions-go
 ```
 
-`cmd/main.go`:
+in `cmd/main.go`:
 
 ```go
 import "github.com/scaleway/serverless-functions-go/local"
@@ -35,7 +37,7 @@ func main() {
 }
 ```
 
-For advanced usage please check [usage section](#-advanced-usage).
+For more information on how to use the framework check the  [usage section](#-advanced-usage).
 
 ## 🚀 Features
 
@@ -43,14 +45,13 @@ This repository aims to provide the best experience: **local testing, utils, doc
 additionally we love to share things with the community and we want to expose receipts to the public. That's why
 we make our framework publicly available to help the community!
 
-## 🏡 Local testing
+### 🏡 Local testing
 
 What this package does:
 
-- **Format Input**: FaaS have a specific input format encapsulating the body received by functions to add some useful data.
-  The local testing package lets you interact with this data.
-- **Advanced debugging**: To improve developer experience you can run your handler locally, on your computer to make
-  it simpler to debug by running your code step-by-step or reading output directly before deploying it.
+- **Format Input**: Serverless Functions have a specific input format encapsulating the body received by functions to add some useful data.
+  The local testing package lets you interact with the formatted data.
+- **Advanced debugging**: To improve developer experience you can run your handler locally and debug it by running your code step-by-step or reading output directly before deploying it.
 
 What this package does not:
 
@@ -61,6 +62,7 @@ What this package does not:
 - **Build functions**: When your function is uploaded we build it in an environment that can be different than yours. Our build pipelines support
   tons of different packages but sometimes it requires a specific setup, for example, if your function requires a specific 3D system library.
   If you have compatibility issues, please see the help section.
+
 
 ## 🛟 Help & support
 
