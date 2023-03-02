@@ -7,5 +7,5 @@ import (
 
 func main() {
 	// Replace "Handle" with your function handler name if necessary
-	local.ServeHandlerLocally(scw.Handle, local.WithPort(8080))
+	local.ServeHandler(scw.Handle, local.WithPort(8080))
 }
