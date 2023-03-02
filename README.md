@@ -140,8 +140,6 @@ To make development and understanding of this repository we tried to keep the pa
 Additionally we love to share things with the community and we want to expose receipts to the public. That's why
 we make our framework publicly available to help the community!
 
-We welcome all contributions to our open-source projects, please see our contributing guidelines <link>.
-
 Do not hesitate to raise issues and pull requests we will have a look at them.
 
 If you are looking for a way to contribute please read [CONTRIBUTING.md](./.github/CONTRIBUTING.md).
