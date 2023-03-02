@@ -20,7 +20,6 @@ Testing frameworks for Scaleway Serverless Functions in other languages can be f
 - [Python](https://github.com/scaleway/serverless-functions-python)
 
 ## ⚙️ Quickstart
-To use the framework, simply add it to your main.go file
 
 ```sh
  go get github.com/scaleway/serverless-functions-go
