@@ -3,7 +3,7 @@
 [![build-and-test](https://github.com/scaleway/serverless-functions-go/actions/workflows/test.yml/badge.svg)](https://github.com/scaleway/serverless-functions-go/actions/workflows/test.yml)
 [![golangci-lint](https://github.com/scaleway/serverless-functions-go/actions/workflows/golangci-lint.yml/badge.svg)](https://github.com/scaleway/serverless-functions-go/actions/workflows/golangci-lint.yml)
 
-Scaleway Serverless Functions Go is a framework which simplify Scaleway [Serverless Functions](https://www.scaleway.com/fr/serverless-functions/) local development. 
+Scaleway Serverless Functions Go is a framework which simplify Scaleway [Serverless Functions](https://www.scaleway.com/fr/serverless-functions/) local development.
 It brings features to debug your function locally and provides input/output data format of Scaleway Serverless Functions.
 
 This library helps you to write functions but for deployment refer to the documentation.
@@ -21,11 +21,13 @@ Testing frameworks for Scaleway Serverless Functions in other languages can be f
 
 ## ⚙️ Quickstart
 
+To get this package:
+
 ```sh
  go get github.com/scaleway/serverless-functions-go
 ```
 
-in `cmd/main.go`:
+Add in `cmd/main.go` the following code:
 
 ```go
 import "github.com/scaleway/serverless-functions-go/local"
@@ -40,9 +42,7 @@ For more information on how to use the framework check the  [usage section](#-a
 
 ## 🚀 Features
 
-This repository aims to provide the best experience: **local testing, utils, documentation etc...**
-additionally we love to share things with the community and we want to expose receipts to the public. That's why
-we make our framework publicly available to help the community!
+This repository aims to provide a better experience on: **local testing, utils, documentation**
 
 ### 🏡 Local testing
 
@@ -61,7 +61,6 @@ What this package does not:
 - **Build functions**: When your function is uploaded we build it in an environment that can be different than yours. Our build pipelines support
   tons of different packages but sometimes it requires a specific setup, for example, if your function requires a specific 3D system library.
   If you have compatibility issues, please see the help section.
-
 
 ## 🔬 Advanced usage
 
@@ -131,11 +130,6 @@ To make development and understanding of this repository we tried to keep the pa
 - [framework](./framework/) folder is used to store all the code that you can import into your project
 - [local](./local) contains all the cool tools to work locally with your function 😎
 
-## 🧑‍💻 Development
-
-This repository is at its early stage and is still in active development.
-If you are looking for a way to contribute please read [CONTRIBUTING.md](./docs/CONTRIBUTING.md).
-
 ## 🛟 Help & support
 
 - Scaleway support is available on Scaleway Console.
@@ -143,9 +137,14 @@ If you are looking for a way to contribute please read [CONTRIBUTING.md](./docs/
 
 ## 🎓 Contributing
 
+Additionally we love to share things with the community and we want to expose receipts to the public. That's why
+we make our framework publicly available to help the community!
+
 We welcome all contributions to our open-source projects, please see our contributing guidelines <link>.
 
 Do not hesitate to raise issues and pull requests we will have a look at them.
+
+If you are looking for a way to contribute please read [CONTRIBUTING.md](./.github/CONTRIBUTING.md).
 
 ## 📭 Reach Us
 
