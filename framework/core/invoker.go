@@ -91,6 +91,8 @@ func (fn *FunctionInvoker) StreamRequest(reqBody CoreRuntimeRequest) (*http.Requ
 		return nil, err
 	}
 
+	request.URL.Path = event.Path
+
 	for key, values := range event.Headers {
 		request.Header.Set(key, values)
 	}

@@ -54,6 +54,25 @@ func TestStreamRequestUserAgent(t *testing.T) {
 	assert.NotNil(t, invoker)
 }
 
+func TestExecutePath(t *testing.T) {
+	t.Parallel()
+
+	const path = "/test/path"
+	original, err := http.NewRequest(http.MethodGet, path, nil)
+	require.NoError(t, err)
+	assert.Equal(t, path, original.URL.Path)
+
+	invoker, err := NewInvoker("", "", "", "", "", false)
+	require.NoError(t, err)
+	assert.NotNil(t, invoker)
+
+	event := FormatEventHTTP(original, nil)
+	req, err := invoker.Execute(event, GetExecutionContext(), TriggerTypeHTTP)
+	require.NoError(t, err)
+	assert.NotNil(t, req)
+	assert.Equal(t, original.URL.Path, req.URL.Path)
+}
+
 func TestStreamExecute(t *testing.T) {
 	t.Parallel()
 
