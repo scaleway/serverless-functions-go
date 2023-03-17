@@ -151,3 +151,4 @@ We love feedback. Feel free to:
 - Open a [Github issue](https://github.com/scaleway/serverless-functions-python/issues/new)
 - Send us a message on the [Scaleway Slack community](https://slack.scaleway.com/), in the
   [#serverless-functions](https://scaleway-community.slack.com/app_redirect?channel=serverless-functions) channel.
+
