@@ -58,7 +58,7 @@ func TestExecutePath(t *testing.T) {
 	t.Parallel()
 
 	const path = "/test/path"
-	original, err := http.NewRequest(http.MethodGet, path, http.NoBody)
+	original, err := http.NewRequestWithContext(context.Background(), http.MethodGet, path, http.NoBody)
 	require.NoError(t, err)
 	assert.Equal(t, path, original.URL.Path)
 
