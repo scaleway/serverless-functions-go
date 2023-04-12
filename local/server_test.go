@@ -17,6 +17,8 @@ import (
 func TestServSimpleResponse(t *testing.T) {
 	t.Parallel()
 
+	rand.Seed(time.Now().UnixNano())
+
 	const testingMessage = "simple test"
 
 	randHeaderKey := randStringRunes(t, 32)
@@ -102,12 +104,9 @@ func TestServDumpResponse(t *testing.T) {
 	assert.Contains(t, respStr, "X-Request-Id")
 }
 
-func init() {
-	rand.Seed(time.Now().UnixNano())
-}
-
 var letterRunes = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
+//nolint:gosec
 func randStringRunes(t *testing.T, n int) string {
 	t.Helper()
 
