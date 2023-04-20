@@ -3,6 +3,7 @@ package local_test
 import (
 	"fmt"
 	"io"
+	"math/rand"
 	"net/http"
 	"net/http/httputil"
 	"testing"
@@ -16,9 +17,15 @@ import (
 func TestServSimpleResponse(t *testing.T) {
 	t.Parallel()
 
+	rand.Seed(time.Now().UnixNano())
+
 	const testingMessage = "simple test"
 
+	randHeaderKey := randStringRunes(t, 32)
+	randHeaderVal := randStringRunes(t, 32)
+
 	handler := func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Add(randHeaderKey, randHeaderVal)
 		_, _ = w.Write([]byte(testingMessage))
 
 		assert.NotEmpty(t, r)
@@ -54,6 +61,7 @@ func TestServSimpleResponse(t *testing.T) {
 	assert.NotEmpty(t, resp.Header.Get("X-Envoy-External-Address"))
 	assert.Equal(t, "Content-Type", resp.Header.Get("Access-Control-Allow-Headers"))
 	assert.Equal(t, fmt.Sprintf("%d", (len(testingMessage))), resp.Header.Get("Content-Length"))
+	assert.Equal(t, randHeaderVal, resp.Header.Get(randHeaderKey))
 
 	bodyBytes, err := io.ReadAll(resp.Body)
 	assert.NoError(t, err)
@@ -94,4 +102,19 @@ func TestServDumpResponse(t *testing.T) {
 	assert.Contains(t, respStr, "X-Forwarded-For:")
 	assert.Contains(t, respStr, "X-Forwarded-Proto: http")
 	assert.Contains(t, respStr, "X-Request-Id")
+}
+
+var letterRunes = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
+
+//nolint:gosec
+func randStringRunes(t *testing.T, n int) string {
+	t.Helper()
+
+	b := make([]rune, n)
+
+	for i := range b {
+		b[i] = letterRunes[rand.Intn(len(letterRunes))]
+	}
+
+	return string(b)
 }
