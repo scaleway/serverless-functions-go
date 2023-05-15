@@ -37,7 +37,7 @@ func CoreProcessing(httpResp http.ResponseWriter, httpReq *http.Request, handler
 
 	invoker := core.FunctionInvoker{}
 
-	reqForFaaS, err := invoker.Execute(formattedRequest, core.GetExecutionContext(), core.TriggerTypeHTTP)
+	reqForFaaS, err := invoker.Execute(formattedRequest, core.GetExecutionContext())
 	if err != nil {
 		panic(err)
 	}

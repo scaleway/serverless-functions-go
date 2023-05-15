@@ -67,7 +67,7 @@ func TestExecutePath(t *testing.T) {
 	assert.NotNil(t, invoker)
 
 	event := FormatEventHTTP(original, nil)
-	req, err := invoker.Execute(event, GetExecutionContext(), TriggerTypeHTTP)
+	req, err := invoker.Execute(event, GetExecutionContext())
 	require.NoError(t, err)
 	assert.NotNil(t, req)
 	assert.Equal(t, original.URL.Path, req.URL.Path)
@@ -102,11 +102,11 @@ func TestStreamExecute(t *testing.T) {
 	httpreq, err := http.NewRequestWithContext(context.Background(), http.MethodPost, server.URL, stringReadCloser)
 	require.NoError(t, err)
 
-	event, err := FormatEvent(httpreq, TriggerTypeHTTP)
+	event, err := FormatEvent(httpreq)
 	require.NoError(t, err)
 	assert.NotNil(t, event)
 
-	resp, err := invoker.Execute(event, GetExecutionContext(), TriggerTypeHTTP)
+	resp, err := invoker.Execute(event, GetExecutionContext())
 	require.NoError(t, err)
 	assert.NotNil(t, resp)
 }
