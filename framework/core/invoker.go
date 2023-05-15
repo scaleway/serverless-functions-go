@@ -53,6 +53,8 @@ func NewInvoker(
 }
 
 // Execute a given function handler, and handle response.
+//
+//nolint:gocritic
 func (fn *FunctionInvoker) Execute(event APIGatewayProxyRequest, ctx ExecutionContext) (*http.Request, error) {
 	reqBody := CoreRuntimeRequest{
 		Event:       event,
