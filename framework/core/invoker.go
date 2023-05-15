@@ -10,11 +10,10 @@ import (
 // CoreRuntimeRequest - Structure for a request from core runtime to sub-runtime with event,
 // context, and handler informations to dynamically import.
 type CoreRuntimeRequest struct {
-	Event       interface{}      `json:"event"`
-	Context     ExecutionContext `json:"context"`
-	HandlerName string           `json:"handlerName"`
-	HandlerPath string           `json:"handlerPath"`
-	TriggerType TriggerType      `json:"-"`
+	Event       APIGatewayProxyRequest `json:"event"`
+	Context     ExecutionContext       `json:"context"`
+	HandlerName string                 `json:"handlerName"`
+	HandlerPath string                 `json:"handlerPath"`
 }
 
 // FunctionInvoker - In charge of running sub-runtime processes, and invoke it with all the necessary informations
@@ -54,13 +53,12 @@ func NewInvoker(
 }
 
 // Execute a given function handler, and handle response.
-func (fn *FunctionInvoker) Execute(event interface{}, ctx ExecutionContext, triggerType TriggerType) (*http.Request, error) {
+func (fn *FunctionInvoker) Execute(event APIGatewayProxyRequest, ctx ExecutionContext) (*http.Request, error) {
 	reqBody := CoreRuntimeRequest{
 		Event:       event,
 		Context:     ctx,
 		HandlerName: fn.HandlerName,
 		HandlerPath: fn.HandlerFilePath,
-		TriggerType: triggerType,
 	}
 
 	return fn.StreamRequest(reqBody)
@@ -73,16 +71,7 @@ func (fn *FunctionInvoker) StreamRequest(reqBody CoreRuntimeRequest) (*http.Requ
 		return nil, err
 	}
 
-	userAgent := ""
-	event := APIGatewayProxyRequest{}
-
-	if reqBody.TriggerType == TriggerTypeHTTP {
-		request, castSucceeds := reqBody.Event.(APIGatewayProxyRequest)
-		if castSucceeds {
-			userAgent = request.Headers[userAgentHeaderKey]
-			event = request
-		}
-	}
+	event := reqBody.Event
 
 	body := bytes.NewReader(bodyJSON)
 
@@ -107,8 +96,8 @@ func (fn *FunctionInvoker) StreamRequest(reqBody CoreRuntimeRequest) (*http.Requ
 		request.Header.Set(contentTypeHeaderKey, "application/json")
 	}
 
-	if userAgent != "" {
-		request.Header.Set(userAgentHeaderKey, userAgent)
+	if event.Headers[userAgentHeaderKey] != "" {
+		request.Header.Set(userAgentHeaderKey, event.Headers[userAgentHeaderKey])
 	}
 
 	return request, nil

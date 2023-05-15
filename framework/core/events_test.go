@@ -11,30 +11,6 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestGetTriggerDefault(t *testing.T) {
-	t.Parallel()
-
-	tt, err := GetTriggerType("")
-	require.NoError(t, err)
-	assert.Equal(t, TriggerTypeHTTP, tt)
-}
-
-func TestGetTriggerInvalid(t *testing.T) {
-	t.Parallel()
-
-	tt, err := GetTriggerType("invalid")
-	assert.Error(t, ErrNotSupportedTrigger, err)
-	assert.Equal(t, TriggerType(""), tt)
-}
-
-func TestGetTriggerValidHTTP(t *testing.T) {
-	t.Parallel()
-
-	tt, err := GetTriggerType(string(TriggerTypeHTTP))
-	require.NoError(t, err)
-	assert.Equal(t, TriggerTypeHTTP, tt)
-}
-
 func TestFormatEventGood(t *testing.T) {
 	t.Parallel()
 
@@ -57,23 +33,17 @@ func TestFormatEventGood(t *testing.T) {
 		URL:    &testURL,
 	}
 
-	formattedEvent, err := FormatEvent(&req, TriggerTypeHTTP)
+	formattedEvent, err := FormatEvent(&req)
 
 	require.NoError(t, err)
 	assert.NotNil(t, formattedEvent)
 
-	// try cast event
-
-	castedEvt, castSucceeds := formattedEvent.(APIGatewayProxyRequest)
-	require.True(t, castSucceeds)
-	assert.NotNil(t, castedEvt)
-
-	assert.Equal(t, testBody, castedEvt.Body)
-	assert.Equal(t, testURLPath, castedEvt.Path)
-	assert.Equal(t, http.MethodPatch, castedEvt.HTTPMethod)
-	assert.Equal(t, http.MethodPatch, castedEvt.RequestContext.HTTPMethod)
+	assert.Equal(t, testBody, formattedEvent.Body)
+	assert.Equal(t, testURLPath, formattedEvent.Path)
+	assert.Equal(t, http.MethodPatch, formattedEvent.HTTPMethod)
+	assert.Equal(t, http.MethodPatch, formattedEvent.RequestContext.HTTPMethod)
 
 	// headers are flattened so expected result changed
-	assert.Equal(t, map[string]string{"multi": "val1,val2"}, castedEvt.Headers)
-	assert.False(t, castedEvt.IsBase64Encoded)
+	assert.Equal(t, map[string]string{"multi": "val1,val2"}, formattedEvent.Headers)
+	assert.False(t, formattedEvent.IsBase64Encoded)
 }
