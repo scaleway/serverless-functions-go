@@ -5,6 +5,7 @@ import (
 	"context"
 	"encoding/json"
 	"net/http"
+	"strings"
 )
 
 // CoreRuntimeRequest - Structure for a request from core runtime to sub-runtime with event,
@@ -84,7 +85,14 @@ func (fn *FunctionInvoker) StreamRequest(reqBody CoreRuntimeRequest) (*http.Requ
 
 	request.URL.Path = event.Path
 
+	// When sending the request to the sub runtime, the request is always in JSON format.
+	request.Header.Set(contentTypeHeaderKey, "application/json")
+
 	for key, values := range event.Headers {
+		if strings.EqualFold(key, contentTypeHeaderKey) {
+			continue
+		}
+
 		request.Header.Set(key, values)
 	}
 
@@ -92,10 +100,6 @@ func (fn *FunctionInvoker) StreamRequest(reqBody CoreRuntimeRequest) (*http.Requ
 		for idx := range values {
 			request.Header.Add(key, values[idx])
 		}
-	}
-
-	if request.Header.Get(contentTypeHeaderKey) == "" {
-		request.Header.Set(contentTypeHeaderKey, "application/json")
 	}
 
 	if event.Headers[userAgentHeaderKey] != "" {
