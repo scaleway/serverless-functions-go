@@ -24,8 +24,10 @@ func TestStreamRequestBadInput(t *testing.T) {
 	genRequest, err := fi.StreamRequest(rtReq)
 	assert.NoError(t, err)
 
-	//nolint:bodyclose
 	httpRep, err := fi.client.Do(genRequest)
+	if httpRep != nil {
+		httpRep.Body.Close()
+	}
 	assert.Error(t, err)
 	assert.Nil(t, httpRep)
 }
