@@ -18,10 +18,10 @@ var (
 func FormatEvent(req *http.Request) (APIGatewayProxyRequest, error) {
 	// request body is the event
 	bodyBytes, err := io.ReadAll(req.Body)
-	defer req.Body.Close()
 	if err != nil {
 		return APIGatewayProxyRequest{}, ErrReadBody
 	}
+	defer req.Body.Close()
 
 	return FormatEventHTTP(req, bodyBytes), nil
 }
