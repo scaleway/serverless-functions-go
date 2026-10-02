@@ -28,6 +28,7 @@ func TestStreamRequestBadInput(t *testing.T) {
 	if httpRep != nil {
 		httpRep.Body.Close()
 	}
+
 	assert.Error(t, err)
 	assert.Nil(t, httpRep)
 }

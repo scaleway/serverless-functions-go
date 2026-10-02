@@ -50,14 +50,8 @@ func CoreProcessing(httpResp http.ResponseWriter, httpReq *http.Request, handler
 	writerRecorder := httptest.NewRecorder()
 	handler(writerRecorder, reqForFaaS)
 
-	// Body is closed but linter reports it.
-
 	recorderResp := writerRecorder.Result()
-	defer func() {
-		if recorderResp.Body != nil {
-			recorderResp.Body.Close()
-		}
-	}()
+	defer recorderResp.Body.Close()
 
 	coreResp, err := core.GetResponse(recorderResp)
 	if err != nil {
