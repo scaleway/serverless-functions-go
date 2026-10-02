@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
+	"unicode/utf8"
 )
 
 const headerContentLen = "Content-Length"
@@ -47,7 +48,12 @@ func FormatEventHTTP(req *http.Request, bodyBytes []byte) APIGatewayProxyRequest
 	}
 
 	input := string(bodyBytes)
-	isBase64Encoded := true
+	isBase64Encoded := false
+
+	if !utf8.Valid(bodyBytes) {
+		input = base64.StdEncoding.EncodeToString(bodyBytes)
+		isBase64Encoded = true
+	}
 
 	_, err := base64.StdEncoding.DecodeString(input)
 	if err != nil {
