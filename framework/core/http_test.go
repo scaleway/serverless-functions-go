@@ -80,25 +80,25 @@ func TestFormatEventHttpBase64(t *testing.T) {
 }
 
 func TestFormatEventHTTPBinaryBody(t *testing.T) {
-    t.Parallel()
+	t.Parallel()
 
-    body := []byte{
-        0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a,
-        0x00, 0xff, 0x80,
-    }
+	body := []byte{
+		0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a,
+		0x00, 0xff, 0x80,
+	}
 
-    req := &http.Request{
-        Method: http.MethodPost,
-        URL:    &url.URL{Path: "/upload"},
-        Header: http.Header{"Content-Type": {"image/png"}},
-    }
+	req := &http.Request{
+		Method: http.MethodPost,
+		URL:    &url.URL{Path: "/upload"},
+		Header: http.Header{"Content-Type": {"image/png"}},
+	}
 
-    event := FormatEventHTTP(req, body)
+	event := FormatEventHTTP(req, body)
 
-    assert.True(t, event.IsBase64Encoded)
-    assert.Equal(t, base64.StdEncoding.EncodeToString(body), event.Body)
+	assert.True(t, event.IsBase64Encoded)
+	assert.Equal(t, base64.StdEncoding.EncodeToString(body), event.Body)
 
-    decoded, err := base64.StdEncoding.DecodeString(event.Body)
-    require.NoError(t, err)
-    assert.Equal(t, body, decoded)
+	decoded, err := base64.StdEncoding.DecodeString(event.Body)
+	require.NoError(t, err)
+	assert.Equal(t, body, decoded)
 }

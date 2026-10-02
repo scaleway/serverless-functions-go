@@ -53,13 +53,13 @@ func FormatEventHTTP(req *http.Request, bodyBytes []byte) APIGatewayProxyRequest
 	if !utf8.Valid(bodyBytes) {
 		input = base64.StdEncoding.EncodeToString(bodyBytes)
 		isBase64Encoded = true
-	}
-
-	_, err := base64.StdEncoding.DecodeString(input)
-	if err != nil {
-		isBase64Encoded = false
 	} else {
-		isBase64Encoded = true
+		_, err := base64.StdEncoding.DecodeString(input)
+		if err != nil {
+			isBase64Encoded = false
+		} else {
+			isBase64Encoded = true
+		}
 	}
 
 	flatHeader := make(map[string]string, len(req.Header))

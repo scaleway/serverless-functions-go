@@ -51,7 +51,7 @@ func CoreProcessing(httpResp http.ResponseWriter, httpReq *http.Request, handler
 	handler(writerRecorder, reqForFaaS)
 
 	// Body is closed but linter reports it.
-	//nolint:bodyclose
+
 	recorderResp := writerRecorder.Result()
 	defer func() {
 		if recorderResp.Body != nil {
