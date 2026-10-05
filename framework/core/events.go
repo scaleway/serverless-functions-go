@@ -21,6 +21,7 @@ func FormatEvent(req *http.Request) (APIGatewayProxyRequest, error) {
 	if err != nil {
 		return APIGatewayProxyRequest{}, ErrReadBody
 	}
+	defer req.Body.Close()
 
 	return FormatEventHTTP(req, bodyBytes), nil
 }
